@@ -1,29 +1,19 @@
-let computerSelection = computerPlay()
+//------Varsiables------
 let playerScore = 0
 let compScore = 0
-//let playerSelection = playerPlay()
+let matchesPlayed = 0
 
-function computerPlay(){
-
-    let choiceNumber = Math.floor(Math.random()*3)
-
-    switch(choiceNumber)
-    {
-        case 0:
-            choice = "rock"
-            return choice
-         case 1:
-            choice = "paper"
-            return choice
-         case 2:
-            choice = "scissors"
-            return choice;
-        default:
-            return "no option" 
-    }
-
+//------Core Game Loop-------
+while(matchesPlayed != 5){
+    let playerSelection = playerPlay()
+    let computerSelection = computerPlay()
+    
+    console.log(playRound(playerSelection, computerSelection))
+    console.log(`Selections: ${playerSelection}, ${computerSelection}`)
+    matchesPlayed++
 }
 
+//--------Game functions----------
 function playRound(playerSelection, computerSelection){
 
     let result = ""
@@ -44,14 +34,29 @@ function playRound(playerSelection, computerSelection){
         compScore++
         result = `You lose! ${computerSelection} beats ${playerSelection}`
     }
-    console.log(result)
+    return result
 }
 
-console.log(playRound("rock", computerSelection))
+function playerPlay(){
+    let choice = prompt("Rock Paper or Scissors")
+    return choice
+}
 
+function computerPlay(){
 
-// function playerPlay(){
-//     let choice = prompt("Rock Paper or Scissors")
-//     console.log(`The players choice: ${choice}`)
-//     return choice
-// }
+    let choice = ""
+    let choiceNumber = Math.floor(Math.random()*3)
+
+    switch(choiceNumber)
+    {
+        case 0:
+            choice = "rock"
+            return choice
+         case 1:
+            choice = "paper"
+            return choice
+         case 2:
+            choice = "scissors"
+            return choice;
+    }
+}
